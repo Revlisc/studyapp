@@ -7,6 +7,7 @@ import LoginScreen from "./Screens/LoginScreen.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
 // Bridgett Test
+// Bridgett Test 2
 
 const Stack = createStackNavigator();
 
