@@ -7,6 +7,7 @@ import LoginScreen from './Screens/LoginScreen.js';
 import HomeScreen from './Screens/HomeScreen.js';
 import ProfileScreen from "./Screens/ProfileScreen.js";
 
+//dale's contribution
 
 const Stack = createStackNavigator();
 
