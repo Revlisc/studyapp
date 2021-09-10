@@ -10,7 +10,7 @@ import ProfileScreen from "./Screens/ProfileScreen.js";
 //dale's contribution
 // Bridgett Test
 //yo! from Arthur
-
+//another one -bridgett
 const Stack = createStackNavigator();
 
 function Stacks() {
