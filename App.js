@@ -21,6 +21,7 @@ const Stack = createStackNavigator();
 //stuff
 //new stuff
 //do stuff
+//adding a new cool feature
 
 function Stacks() {
   return (
