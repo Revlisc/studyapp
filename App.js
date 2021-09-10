@@ -14,6 +14,7 @@ import ProfileScreen from "./Screens/ProfileScreen.js";
 //Dale's comment 
 
 //test to see if this works merge from dales branch
+//test
 
 const Stack = createStackNavigator();
 
