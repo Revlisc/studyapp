@@ -11,12 +11,12 @@ import ProfileScreen from "./Screens/ProfileScreen.js";
 // Bridgett Test 2.2
 //yo! from Arthur
 //another one -bridgett
+//another one -bridgett2
+
 const Stack = createStackNavigator();
 //Dale made a comment!!!!!!!!
 //totally new comment at 5:53 pm
 //another new comment made at 5:58
-
-
 
 //stuff
 //new stuff
