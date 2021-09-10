@@ -8,6 +8,7 @@ import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
 
 //new comment from Arthur
+//third comment from arthur
 const Stack = createStackNavigator();
 
 function Stacks() {
