@@ -1,0 +1,1 @@
+An app made in collaboration to allow for a user to make flashcard sets for studying.
