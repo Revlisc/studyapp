@@ -8,8 +8,7 @@ import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
 
 //dale's contribution
-
-// Bridgett Test
+// Bridgett Test 2.2
 //yo! from Arthur
 //Dale's comment 
 
