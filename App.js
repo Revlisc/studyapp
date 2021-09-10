@@ -9,7 +9,7 @@ import ProfileScreen from "./Screens/ProfileScreen.js";
 
 const Stack = createStackNavigator();
 
-//fourth comment from Arthur, deleted previous comments
+//totally new comment at 5:53 pm
 function Stacks() {
   return (
     <Stack.Navigator>
