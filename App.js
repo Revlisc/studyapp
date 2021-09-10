@@ -13,6 +13,7 @@ const Stack = createStackNavigator();
 //another new comment made at 5:58
 //stuff
 //new stuff
+//do stuff
 function Stacks() {
   return (
     <Stack.Navigator>
