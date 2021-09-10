@@ -11,7 +11,6 @@ const Stack = createStackNavigator();
 //Dale made a comment!!!!!!!!
 //totally new comment at 5:53 pm
 //another new comment made at 5:58
-//Arthur made anew comment!
 function Stacks() {
   return (
     <Stack.Navigator>
