@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
 //totally new comment at 5:53 pm
 //stuff/
 //stuff
-const stuff;
+
 //another new comment made at 5:58
 //new comment at 224
 //stuff
