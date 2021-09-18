@@ -11,9 +11,19 @@ const Stack = createStackNavigator();
 
 function Stacks() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#6C61EB",
+        },
+        headerTintColor: "#F5F8FF",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Home" component={Tabs} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 }
