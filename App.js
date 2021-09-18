@@ -18,9 +18,7 @@ function Stacks() {
           backgroundColor: "#6C61EB",
         },
         headerTintColor: "#F5F8FF",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
+        headerTitleStyle: "bold",
       }}
     >
       <Stack.Screen name="SignUp" component={SignUpScreen} />
