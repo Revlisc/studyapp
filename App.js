@@ -10,6 +10,8 @@ import SignUpScreen from "./Screens/SignUpScreen.js";
 import store from "./redux/configureStore.js";
 import { Provider } from "react-redux";
 
+
+
 const Stack = createStackNavigator();
 
 function Stacks() {
@@ -23,10 +25,10 @@ function Stacks() {
         headerTitleStyle: "bold",
       }}
     >
-      <Stack.Screen name="SignUp" component={SignUpScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen options={{headerShown: false}} name="SignUp" component={SignUpScreen} />
+      <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
 
-      <Stack.Screen name="Home" component={Tabs} />
+      <Stack.Screen name="Main" component={Tabs} />
     </Stack.Navigator>
   );
 }
@@ -45,6 +47,18 @@ function Tabs() {
     </Tab.Navigator>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.user.currentUser,
+    userInfo: state.user.userInfo,
+    userData: state.userData.userData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  setUserInfo: (values) => dispatch(setUserInfo(values)),
+});
 
 export default function App() {
   return (
