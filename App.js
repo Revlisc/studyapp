@@ -6,13 +6,16 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./Screens/LoginScreen.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
+import SignUpScreen from "./Screens/SignUpScreen.js";
 
 const Stack = createStackNavigator();
 
 function Stacks() {
   return (
     <Stack.Navigator>
+      <Stack.Screen name='SignUp' component={SignUpScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      
       <Stack.Screen name="Home" component={Tabs} />
     </Stack.Navigator>
   );
