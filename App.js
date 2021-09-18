@@ -12,10 +12,18 @@ const Stack = createStackNavigator();
 
 function Stacks() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name='SignUp' component={SignUpScreen} />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#6C61EB",
+        },
+        headerTintColor: "#F5F8FF",
+        headerTitleStyle: "bold",
+      }}
+    >
+      <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
-      
+
       <Stack.Screen name="Home" component={Tabs} />
     </Stack.Navigator>
   );
