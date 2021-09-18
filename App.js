@@ -7,6 +7,8 @@ import LoginScreen from "./Screens/LoginScreen.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
 import SignUpScreen from "./Screens/SignUpScreen.js";
+import store from "./redux/configureStore.js";
+import { Provider } from "react-redux";
 
 const Stack = createStackNavigator();
 
@@ -46,8 +48,10 @@ function Tabs() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stacks />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stacks />
+      </NavigationContainer>
+    </Provider>
   );
 }
