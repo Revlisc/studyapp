@@ -7,6 +7,7 @@ import LoginScreen from "./Screens/LoginScreen.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
 import SignUpScreen from "./Screens/SignUpScreen.js";
+import EditSetScreen from "./Screens/EditSetScreen.js";
 import store from "./redux/configureStore.js";
 import { Provider } from "react-redux";
 
@@ -26,7 +27,8 @@ function Stacks() {
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
 
-      <Stack.Screen name="Home" component={Tabs} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="EditSet" component={EditSetScreen} />
     </Stack.Navigator>
   );
 }
