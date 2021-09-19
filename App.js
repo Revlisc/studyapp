@@ -9,6 +9,7 @@ import ProfileScreen from "./Screens/ProfileScreen.js";
 import SignUpScreen from "./Screens/SignUpScreen.js";
 import store from "./redux/configureStore.js";
 import { Provider } from "react-redux";
+import ReviewScreen from "./Screens/ReviewScreen.js";
 
 
 
@@ -25,6 +26,7 @@ function Stacks() {
         headerTitleStyle: "bold",
       }}
     >
+      <Stack.Screen name='Review' component={ReviewScreen} />
       <Stack.Screen options={{headerShown: false}} name="SignUp" component={SignUpScreen} />
       <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
 

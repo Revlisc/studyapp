@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, PanResponder } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { useRoute } from '@react-navigation/native';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 const mapStateToProps = (state) => ({
   userData: state.userData.userData
@@ -17,14 +20,17 @@ const Percentage = ({ percent, length }) => {
   );
 };
 
+
+
 const ReviewScreen = ({ userData }) => {
   const [flipped, setFlip] = useState(false);
   const [index, setIndex] = useState(1);
   const [percent, setPercent] = useState(0);
-  const location = useLocation();
-  const { setId } = location.state;
+  const [gestureName, setGestureName] = useState('')
+  const route = useRoute();
+  const { itemId } = route.params;
   //filter out set being edited from all sets
-  let currentSet = userData.filter((set) => set.id === setId)[0];
+  let currentSet = userData.filter((set) => set.id === itemId)[0];
   //const current = currentSet.questions[index]
 
   const wrong = [];
@@ -59,6 +65,7 @@ const ReviewScreen = ({ userData }) => {
     console.log(wrong);
   }
 
+
   let current = currentSet.questions.filter((question, idx) => {
     if (idx + 1 === index) {
       return question;
@@ -73,10 +80,10 @@ const ReviewScreen = ({ userData }) => {
   // console.log('length is ', currentSet.questions.length)
   // console.log('percentage is', percentage)
   return (
-    <div>
-      <h1 className="reviewTitle">Review Set</h1>
-      <h2 className="reviewCurrTitle">{currentSet.setName}</h2>
-      <p className="reviewCurrWords">{currentSet.description}</p>
+    <View>
+      <Text className="reviewTitle">Review Set</Text>
+      <Text className="reviewCurrTitle">{currentSet.setName}</Text>
+      <Text className="reviewCurrWords">{currentSet.description}</Text>
 
       {current.map((question) => {
         return (
@@ -89,53 +96,51 @@ const ReviewScreen = ({ userData }) => {
           />
         );
       })}
-
-      <ul className="reviewButtons">
-        <li
+      
+      <View className="reviewButtons">
+        <Button
           className="reviewWrong"
           onClick={() => {
             addIncorrect();
           }}
         >
-          <i className="fas fa-times-circle fa-lg" />
-        </li>
-        <li
-          className="reviewBack"
-          onClick={() => {
-            showPrevCard();
-            setFlip(false)
-          }}
-        >
-          <i className="fas fa-arrow-left"></i>
-        </li>
-        <li className="questionProgress">
-          {index} / {currentSet.questions.length}
-        </li>
-        <li
-          className="reviewNext"
-          onClick={() => {
-            showNextCard();
-            setFlip(false)
-          }}
-        >
-          <i className="fas fa-arrow-right " />
-        </li>
-        <li
+          <Icon name='times-circle'  type='font-awesome' />
+        </Button>
+        
+        <View className="questionProgress">
+          <Text>{index} / {currentSet.questions.length}</Text>
+        </View>
+        <Button
           className="reviewCorrect"
           onClick={() => {
             addCorrect();
           }}
         >
-          <i className="fas fa-check-square fa-lg" />
-        </li>
-      </ul>
-      <div>
-        <div className="correctProgress">
+          <Icon name='check-square' type='font-awesome' />
+        </Button>
+      </View>
+      <View>
+        <View className="correctProgress">
           <Percentage percent={percent} length={currentSet.questions.length} />
-        </div>
-      </div>
-    </div>
+        </View>
+      </View>
+    </View>
   );
 };
+
+// const Views = () => {
+//   const rightDrag = ({dx}) => (dx < -200) ? true : false;
+
+//   const panResponder = PanResponder.create({
+//     onStartShouldSetPanResponder: () => true,
+//     onPanResponderEnd: (e, gestureState) => {
+//       if (rightDrag(gestureState)) {
+//         let newIndex = index
+//         newIndex++
+//         setIndex(newIndex)
+//       }
+//     }
+//   })
+// }
 
 export default ReviewScreen;
