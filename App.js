@@ -7,11 +7,11 @@ import LoginScreen from "./Screens/LoginScreen.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProfileScreen from "./Screens/ProfileScreen.js";
 import SignUpScreen from "./Screens/SignUpScreen.js";
+import EditSetScreen from "./Screens/EditSetScreen.js";
+import EditQuestionScreen from "./Screens/EditQuestionScreen.js";
 import store from "./redux/configureStore.js";
 import { Provider } from "react-redux";
 import ReviewScreen from "./Screens/ReviewScreen.js";
-
-
 
 const Stack = createStackNavigator();
 
@@ -26,11 +26,18 @@ function Stacks() {
         headerTitleStyle: "bold",
       }}
     >
+<<<<<<< HEAD
       <Stack.Screen name='Review' component={ReviewScreen} />
       <Stack.Screen options={{headerShown: false}} name="SignUp" component={SignUpScreen} />
       <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+=======
+      <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+>>>>>>> main
 
-      <Stack.Screen name="Main" component={Tabs} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="EditSet" component={EditSetScreen} />
+      <Stack.Screen name="EditQuestion" component={EditQuestionScreen} />
     </Stack.Navigator>
   );
 }
