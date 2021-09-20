@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { View, TextInput, SafeAreaView, StyleSheet, Text, FlatList } from "react-native";
+import {
+  View,
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { connect } from "react-redux";
 import EditSetInfo from "../Components/EditSetInfo";
 import EditQuestionButton from "../Components/EditQuestionButton";
 
-const EditSetScreen = ({ userData }) => {
+const EditSetScreen = ({ userData, navigation }) => {
   //must use route to get access to params
   const route = useRoute();
   const { itemId } = route.params;
@@ -13,7 +21,7 @@ const EditSetScreen = ({ userData }) => {
   const set = userData.filter((set) => set.id === itemId)[0];
   //save it to local state
   const [currentSet, setCurrentSet] = useState(set);
-
+  console.log(userData);
   const handleInfoChange = (input, text) => {
     setCurrentSet({
       ...currentSet,
@@ -22,7 +30,18 @@ const EditSetScreen = ({ userData }) => {
     //setFillButton(true);
   };
 
-  const renderItem = ({ item }) => <EditQuestionButton question={item} />;
+  const renderItem = ({ item, index }) => (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("EditQuestion", {
+          question: item,
+          setId: currentSet.id,
+        });
+      }}
+    >
+      <EditQuestionButton question={item} idx={index} setId={currentSet.id} />
+    </TouchableOpacity>
+  );
   return (
     //components for each tyoe of input
     <SafeAreaView style={styles.container}>
