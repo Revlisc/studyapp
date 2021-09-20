@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   TextInput,
@@ -8,7 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useFocusEffect } from "@react-navigation/native";
 import { connect } from "react-redux";
 import EditSetInfo from "../Components/EditSetInfo";
 import EditQuestionButton from "../Components/EditQuestionButton";
@@ -21,7 +21,13 @@ const EditSetScreen = ({ userData, navigation }) => {
   const set = userData.filter((set) => set.id === itemId)[0];
   //save it to local state
   const [currentSet, setCurrentSet] = useState(set);
-  console.log(userData);
+  //had to use this hook to reload component when navigating back to screen
+  useFocusEffect(
+    useCallback(() => {
+      setCurrentSet(set);
+    })
+  );
+
   const handleInfoChange = (input, text) => {
     setCurrentSet({
       ...currentSet,

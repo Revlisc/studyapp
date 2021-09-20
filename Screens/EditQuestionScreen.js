@@ -43,6 +43,9 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
       return set;
     });
     editQuestion(updatedState);
+    // navigation.navigate("EditSet", {
+    //   itemId: updatedSet.id,
+    // });
     navigation.goBack();
 
     //dispatch new state to store
