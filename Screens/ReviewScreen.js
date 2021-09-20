@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, PanResponder } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+//import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 const mapStateToProps = (state) => ({
   userData: state.userData.userData
@@ -105,6 +105,26 @@ const ReviewScreen = ({ userData }) => {
           }}
         >
           <Icon name='times-circle'  type='font-awesome' />
+        </Button>
+
+        <Button 
+          className='reviewBack'
+          onClick={() => {
+            showPrevCard();
+            setFlip(false)
+          }}
+        >
+          <Icon name='arrow-left' type='font-awesome'/>
+        </Button>
+
+        <Button 
+          className='reviewNext'
+          onClick={() => {
+            showNextCard();
+            setFlip(false)
+          }}
+        >
+          <Icon name='arrow-right' type='font-awesome'/>
         </Button>
         
         <View className="questionProgress">
