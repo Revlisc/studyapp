@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { Icon } from "react-native-elements";
 import { useRoute, useFocusEffect } from "@react-navigation/native";
 import { connect } from "react-redux";
 import EditSetInfo from "../Components/EditSetInfo";
@@ -66,7 +67,18 @@ const EditSetScreen = ({ userData, navigation }) => {
         />
       </View>
 
-      {/* // <AddNewQuestion /> */}
+      {/* add new question button, routes to add question screen */}
+      <View style={styles.iconContainer}>
+        <Icon
+          name="plus"
+          type="font-awesome"
+          size="40"
+          color="#6C61EB"
+          onPress={() => {
+            navigation.navigate("Add Question", { setId: currentSet.id });
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -90,6 +102,14 @@ const styles = StyleSheet.create({
   questionContainer: {
     marginHorizontal: 35,
   },
+  iconContainer: {
+    backgroundColor: "#F5F8FF",
+    width: 45,
+    alignSelf: "center",
+    marginTop: 30,
+  },
+
+  addBtn: {},
 });
 
 export default connect(mapStateToProps)(EditSetScreen);
