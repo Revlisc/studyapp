@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   TextInput,
@@ -29,14 +29,6 @@ const EditSetScreen = ({ userData, navigation }) => {
     })
   );
 
-  const handleInfoChange = (input, text) => {
-    setCurrentSet({
-      ...currentSet,
-      [input]: text,
-    });
-    //setFillButton(true);
-  };
-
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       onPress={() => {
@@ -49,15 +41,12 @@ const EditSetScreen = ({ userData, navigation }) => {
       <EditQuestionButton question={item} idx={index} setId={currentSet.id} />
     </TouchableOpacity>
   );
+
   return (
     //components for each tyoe of input
     <SafeAreaView style={styles.container}>
       <View style={styles.infoContainer}>
-        <EditSetInfo
-          setName={currentSet.setName}
-          description={currentSet.description}
-          handleInfoChange={handleInfoChange}
-        />
+        <EditSetInfo currentSet={currentSet} />
       </View>
       <View style={styles.questionContainer}>
         <FlatList

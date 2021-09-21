@@ -34,3 +34,8 @@ export const addQuestion = (updatedState) => ({
   type: actionTypes.ADD_QUESTION,
   payload: updatedState,
 });
+
+export const editInfo = (updatedState) => ({
+  type: actionTypes.EDIT_INFO,
+  payload: updatedState,
+});

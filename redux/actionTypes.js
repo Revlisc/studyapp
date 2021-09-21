@@ -5,4 +5,5 @@ export const actionTypes = {
   EDIT_QUESTION: "EDIT_QUESTION",
   DELETE_SET: "DELETE_SET",
   ADD_QUESTION: "ADD_QUESTION",
+  EDIT_INFO: "EDIT_INFO ",
 };

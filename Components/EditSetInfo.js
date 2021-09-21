@@ -1,21 +1,55 @@
-import React from "react";
-import { TextInput, SafeAreaView, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { TextInput, SafeAreaView, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { editInfo } from "../redux/actions";
 
-const EditSetInfo = ({ setName, description, handleInfoChange }) => {
+const EditSetInfo = ({ currentSet, userData, editInfo }) => {
+  const { setName, description } = currentSet;
+  const [info, setInfo] = useState({ setName, description });
+
+  const handleInfoChange = (input, text) => {
+    setInfo({
+      ...info,
+      [input]: text,
+    });
+    //setFillButton(true);
+  };
+
+  const handleSubmit = () => {
+    //update setName and description
+    const updatedSet = {
+      ...currentSet,
+      setName: info.setName,
+      description: info.description,
+    };
+
+    const updatedState = userData.map((set) => {
+      if (set.id === currentSet.id) {
+        return updatedSet;
+      }
+      return set;
+    });
+
+    editInfo(updatedState);
+  };
+
   return (
     <SafeAreaView>
       <TextInput
         style={styles.setName}
         onChangeText={(text) => handleInfoChange("setName", text)}
-        value={setName}
+        value={info.setName}
       />
       <TextInput
         style={styles.description}
         multiline
         numberOfLines={4}
         onChangeText={(text) => handleInfoChange("description", text)}
-        value={description}
+        value={info.description}
       />
+      <TouchableOpacity onPress={() => handleSubmit()}>
+        <Text>Edit Set Info</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -47,4 +81,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditSetInfo;
+const mapDispatchToProps = (dispatch) => ({
+  editInfo: (updatedState) => dispatch(editInfo(updatedState)),
+});
+
+const mapStateToProps = (state) => ({
+  userData: state.userData.userData,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditSetInfo);
