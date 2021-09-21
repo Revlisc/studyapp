@@ -26,14 +26,9 @@ function Stacks() {
         headerTitleStyle: "bold",
       }}
     >
-<<<<<<< HEAD
       <Stack.Screen name='Review' component={ReviewScreen} />
       <Stack.Screen options={{headerShown: false}} name="SignUp" component={SignUpScreen} />
       <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
-=======
-      <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
-      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
->>>>>>> main
 
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="EditSet" component={EditSetScreen} />

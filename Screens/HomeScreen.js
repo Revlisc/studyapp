@@ -8,7 +8,7 @@ const HomeScreen = ({ userData }) => {
   
   const navigate = useNavigation()
   
-  const renderItem = ({ item }) => <SetButton setName={item.setName} id={item.id} onPress={() => navigate.navigation('ReviewScreen')}/>;
+  const renderItem = ({ item }) => <SetButton setName={item.setName} id={item.id} onPress={() => navigate.navigation('ReviewScreen', {itemId: item.id})}/>;
 
   return (
     <SafeAreaView style={styles.container}>
