@@ -11,11 +11,11 @@ import {
 import { Icon } from "react-native-elements";
 import { useRoute, useFocusEffect } from "@react-navigation/native";
 import { connect } from "react-redux";
-import { deleteQuestion } from "../redux/actions";
+import { deleteQuestion, deleteSet } from "../redux/actions";
 import EditSetInfo from "../Components/EditSetInfo";
 import EditQuestionButton from "../Components/EditQuestionButton";
 
-const EditSetScreen = ({ userData, navigation, deleteQuestion }) => {
+const EditSetScreen = ({ userData, navigation, deleteQuestion, deleteSet }) => {
   //must use route to get access to params
   const route = useRoute();
   const { itemId } = route.params;
@@ -30,7 +30,7 @@ const EditSetScreen = ({ userData, navigation, deleteQuestion }) => {
     })
   );
 
-  const onDeleteHandler = (questionToDelete) => {
+  const onDeleteQuestionHandler = (questionToDelete) => {
     const updatedQuestions = currentSet.questions.filter(
       (question) => question.id !== questionToDelete.id
     );
@@ -47,6 +47,12 @@ const EditSetScreen = ({ userData, navigation, deleteQuestion }) => {
     deleteQuestion(updatedState);
   };
 
+  const onSetDeleteHandler = () => {
+    const updatedState = userData.filter((set) => set.id !== currentSet.id);
+    deleteSet(updatedState);
+    navigation.goBack();
+  };
+
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       onPress={() => {
@@ -60,7 +66,7 @@ const EditSetScreen = ({ userData, navigation, deleteQuestion }) => {
         question={item}
         idx={index}
         setId={currentSet.id}
-        deleteQuestion={onDeleteHandler}
+        deleteQuestion={onDeleteQuestionHandler}
       />
     </TouchableOpacity>
   );
@@ -69,7 +75,7 @@ const EditSetScreen = ({ userData, navigation, deleteQuestion }) => {
     //components for each tyoe of input
     <SafeAreaView style={styles.container}>
       <View style={styles.infoContainer}>
-        <EditSetInfo currentSet={currentSet} />
+        <EditSetInfo currentSet={currentSet} onDelete={onSetDeleteHandler} />
       </View>
       <View style={styles.questionContainer}>
         <FlatList
@@ -101,6 +107,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteQuestion: (updatedState) => dispatch(deleteQuestion(updatedState)),
+  deleteSet: (updatedState) => dispatch(deleteSet(updatedState)),
 });
 
 const styles = StyleSheet.create({

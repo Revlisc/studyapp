@@ -41,6 +41,13 @@ export const userDataReducer = (state = INITIAL_STATE, action) => {
         userData: action.payload,
       };
 
+    case actionTypes.DELETE_SET: {
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    }
+
     default:
       return state;
   }

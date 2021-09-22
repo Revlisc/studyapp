@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { TextInput, SafeAreaView, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { TextInput, SafeAreaView, TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { editInfo } from "../redux/actions";
 
-const EditSetInfo = ({ currentSet, userData, editInfo }) => {
+const EditSetInfo = ({ currentSet, userData, editInfo, onDelete }) => {
   const { setName, description } = currentSet;
   const [info, setInfo] = useState({ setName, description });
 
@@ -47,9 +47,15 @@ const EditSetInfo = ({ currentSet, userData, editInfo }) => {
         onChangeText={(text) => handleInfoChange("description", text)}
         value={info.description}
       />
-      <TouchableOpacity onPress={() => handleSubmit()}>
-        <Text>Edit Set Info</Text>
-      </TouchableOpacity>
+
+      <View style={styles.btnContainer}>
+        <TouchableOpacity style={styles.deleteBtn} onPress={() => onDelete()}>
+          <Text style={styles.btnText}>Delete Set</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.editBtn} onPress={() => handleSubmit()}>
+          <Text style={styles.btnText}>Edit Set Info</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -71,13 +77,43 @@ const styles = StyleSheet.create({
     height: 100,
 
     marginTop: 30,
-    marginBottom: 30,
+    marginBottom: 15,
     borderWidth: 1,
     borderColor: "#C4C4C4",
     backgroundColor: "#fff",
     borderRadius: 15,
     padding: 10,
     fontSize: 20,
+  },
+
+  btnContainer: {
+    marginBottom: 15,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  editBtn: {
+    width: 100,
+    paddingVertical: 10,
+    marginLeft: 15,
+    alignItems: "center",
+    borderColor: "#C4C4C4",
+    borderWidth: 1,
+    backgroundColor: "#6C61EB",
+    borderRadius: 15,
+  },
+
+  deleteBtn: {
+    width: 100,
+    paddingVertical: 10,
+    alignItems: "center",
+    borderColor: "#C4C4C4",
+    borderWidth: 1,
+    backgroundColor: "#de1616",
+    borderRadius: 15,
+  },
+
+  btnText: {
+    color: "#fff",
   },
 });
 
