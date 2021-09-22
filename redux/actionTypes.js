@@ -6,4 +6,5 @@ export const actionTypes = {
   DELETE_SET: "DELETE_SET",
   ADD_QUESTION: "ADD_QUESTION",
   EDIT_INFO: "EDIT_INFO ",
+  DELETE_QUESTION: "DELETE_QUESTION",
 };

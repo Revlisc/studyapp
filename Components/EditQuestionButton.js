@@ -1,14 +1,41 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
+const EditQuestionButton = ({ question, idx, setId, deleteQuestion }) => {
+  const rightSwipeActions = () => {
+    return (
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#de1616",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          marginTop: 15,
+          padding: 15,
+        }}
+        onPress={() => deleteQuestion(question)}
+      >
+        <View>
+          <Text
+            style={{
+              color: "#1b1a17",
+            }}
+          >
+            Delete
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
-const EditQuestionButton = ({ question, idx, setId }) => {
   return (
-    <View style={styles.questionButton}>
-      <View style={styles.containerItems}>
-        <Text style={styles.text}>{`${idx + 1}.`}</Text>
-        <Text style={styles.text}>{question.question}</Text>
+    <Swipeable renderRightActions={rightSwipeActions}>
+      <View style={styles.questionButton}>
+        <View style={styles.containerItems}>
+          <Text style={styles.text}>{`${idx + 1}.`}</Text>
+          <Text style={styles.text}>{question.question}</Text>
+        </View>
       </View>
-    </View>
+    </Swipeable>
   );
 };
 

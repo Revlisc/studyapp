@@ -39,3 +39,8 @@ export const editInfo = (updatedState) => ({
   type: actionTypes.EDIT_INFO,
   payload: updatedState,
 });
+
+export const deleteQuestion = (updatedState) => ({
+  type: actionTypes.DELETE_QUESTION,
+  payload: updatedState,
+});

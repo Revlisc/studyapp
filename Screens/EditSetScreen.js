@@ -11,10 +11,11 @@ import {
 import { Icon } from "react-native-elements";
 import { useRoute, useFocusEffect } from "@react-navigation/native";
 import { connect } from "react-redux";
+import { deleteQuestion } from "../redux/actions";
 import EditSetInfo from "../Components/EditSetInfo";
 import EditQuestionButton from "../Components/EditQuestionButton";
 
-const EditSetScreen = ({ userData, navigation }) => {
+const EditSetScreen = ({ userData, navigation, deleteQuestion }) => {
   //must use route to get access to params
   const route = useRoute();
   const { itemId } = route.params;
@@ -29,6 +30,23 @@ const EditSetScreen = ({ userData, navigation }) => {
     })
   );
 
+  const onDeleteHandler = (questionToDelete) => {
+    const updatedQuestions = currentSet.questions.filter(
+      (question) => question.id !== questionToDelete.id
+    );
+    const updatedSet = {
+      ...currentSet,
+      questions: updatedQuestions,
+    };
+    const updatedState = userData.map((set) => {
+      if (set.id === currentSet.id) {
+        return updatedSet;
+      }
+      return set;
+    });
+    deleteQuestion(updatedState);
+  };
+
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       onPress={() => {
@@ -38,7 +56,12 @@ const EditSetScreen = ({ userData, navigation }) => {
         });
       }}
     >
-      <EditQuestionButton question={item} idx={index} setId={currentSet.id} />
+      <EditQuestionButton
+        question={item}
+        idx={index}
+        setId={currentSet.id}
+        deleteQuestion={onDeleteHandler}
+      />
     </TouchableOpacity>
   );
 
@@ -76,6 +99,10 @@ const mapStateToProps = (state) => ({
   userData: state.userData.userData,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  deleteQuestion: (updatedState) => dispatch(deleteQuestion(updatedState)),
+});
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F5F8FF",
@@ -101,4 +128,4 @@ const styles = StyleSheet.create({
   addBtn: {},
 });
 
-export default connect(mapStateToProps)(EditSetScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(EditSetScreen);
