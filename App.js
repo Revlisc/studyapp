@@ -33,7 +33,7 @@ function Stacks() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="EditSet" component={EditSetScreen} />
       <Stack.Screen name="EditQuestion" component={EditQuestionScreen} />
-      <Stack.Screen name='ReviewScreen' component={ReviewScreen} />
+      <Stack.Screen name='ReviewScreen' component={ReviewScreen} options={{gestureEnabled: false}}/>
     </Stack.Navigator>
   );
 }
