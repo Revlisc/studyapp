@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, PanResponder } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
+import { connect } from 'react-redux';
 //import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 const mapStateToProps = (state) => ({
-  userData: state.userData.userData
-})
+  userData: state.userData.userData,
+});
 
 const Percentage = ({ percent, length }) => {
   let value = Math.floor((percent / length) * 100);
@@ -26,11 +27,11 @@ const ReviewScreen = ({ userData }) => {
   const [flipped, setFlip] = useState(false);
   const [index, setIndex] = useState(1);
   const [percent, setPercent] = useState(0);
-  const [gestureName, setGestureName] = useState('')
+  //const [gestureName, setGestureName] = useState('')
   const route = useRoute();
-  const { itemId } = route.params;
+  const { id } = route.params;
   //filter out set being edited from all sets
-  let currentSet = userData.filter((set) => set.id === itemId)[0];
+  let currentSet = userData.filter((set) => set.id === id)[0];
   //const current = currentSet.questions[index]
 
   const wrong = [];
@@ -65,15 +66,15 @@ const ReviewScreen = ({ userData }) => {
     console.log(wrong);
   }
 
-
-  let current = currentSet.questions.filter((question, idx) => {
-    if (idx + 1 === index) {
-      return question;
-    }
-    return null;
-  });
-  console.log(current);
-  console.log(index);
+  console.log('current set is', currentSet)
+  // let current = currentSet.questions.filter((question, idx) => {
+  //   if (idx + 1 === index) {
+  //     return question;
+  //   }
+  //   return null;
+  // });
+  // console.log(current);
+  // console.log(index);
 
   // let percentage = correct / currentSet.questions.length;
   // console.log('correct is ', correct)
@@ -163,4 +164,4 @@ const ReviewScreen = ({ userData }) => {
 //   })
 // }
 
-export default ReviewScreen;
+export default connect(mapStateToProps)(ReviewScreen);
