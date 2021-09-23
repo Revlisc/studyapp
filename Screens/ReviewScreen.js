@@ -95,11 +95,6 @@ const ReviewScreen = ({ userData }) => {
     }
   })
 
-  const Alert = () => {
-    Alert.alert(
-      'Swipe to Scroll!'
-    )
-  }
 
   // let percentage = correct / currentSet.questions.length;
   // console.log('correct is ', correct)
@@ -134,27 +129,27 @@ const ReviewScreen = ({ userData }) => {
           <Icon name='times-circle' size={60} color={'red'} type='font-awesome' />
         </TouchableOpacity>
 
-        {/* <TouchableOpacity 
+        <TouchableOpacity 
           style={styles.showPrevCard}
           onPress={() => {
             showPrevCard();
             setFlip(false)
           }}
         >
-          <Icon name='arrow-left' type='font-awesome'/>
-        </TouchableOpacity> */}
+          <Icon name='arrow-left' size={30} type='font-awesome'/>
+        </TouchableOpacity>
         <View >
           <Text>{index} / {currentSet.questions.length}</Text>
         </View>
-        {/* <TouchableOpacity 
+        <TouchableOpacity 
           style={styles.showNextCard}
           onPress={() => {
             showNextCard();
             setFlip(false)
           }}
         >
-          <Icon name='arrow-right' type='font-awesome'/>
-        </TouchableOpacity> */}
+          <Icon name='arrow-right' size={30} type='font-awesome'/>
+        </TouchableOpacity>
         
         <TouchableOpacity
           title={<Icon name='check-square' type='font-awesome' />}
@@ -218,6 +213,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: '10%'
   },
+  showNextCard: {
+    marginLeft: 20
+  },
+  showPrevCard: {
+    marginRight: 20
+  }
   
 });
 
