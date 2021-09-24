@@ -1,19 +1,31 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
+import { StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
 import SetButton from "../Components/SetButton";
 
-const HomeScreen = ({ userData }) => {
-  
-  const navigate = useNavigation()
-  
-  const renderItem = ({ item }) => <SetButton setName={item.setName} id={item.id} onPress={() => navigate.navigation('ReviewScreen', {itemId: item.id})}/>;
+const HomeScreen = ({ userData, navigation }) => {
+  const renderItem = ({ item }) => (
+    <SetButton
+      setName={item.setName}
+      id={item.id}
+      onPress={() => navigation.navigate("ReviewScreen", { itemId: item.id })}
+    />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>My Sets</Text>
       <FlatList data={userData} renderItem={renderItem} keyExtractor={(item) => item.id} />
+      <View style={styles.btnContainer}>
+        <TouchableOpacity
+          style={styles.addNewBtn}
+          onPress={() => {
+            navigation.navigate("Add New Set");
+          }}
+        >
+          <Text style={styles.btnText}>Add new Set</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -26,6 +38,24 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignSelf: "center",
     marginVertical: 15,
+  },
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  addNewBtn: {
+    width: 300,
+    paddingVertical: 10,
+    alignItems: "center",
+    borderColor: "#C4C4C4",
+    borderWidth: 1,
+    backgroundColor: "#6C61EB",
+    borderRadius: 15,
+  },
+
+  btnText: {
+    color: "#F5F8FF",
+    fontWeight: "bold",
   },
 });
 

@@ -23,6 +23,38 @@ export const userDataReducer = (state = INITIAL_STATE, action) => {
         ...state,
         userData: action.payload,
       };
+
+    case actionTypes.ADD_QUESTION:
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    case actionTypes.DELETE_QUESTION: {
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    }
+    case actionTypes.EDIT_INFO:
+      return {
+        ...state,
+        userData: action.payload,
+      };
+
+    case actionTypes.DELETE_SET: {
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    }
+
+    case actionTypes.ADD_SET: {
+      return {
+        ...state,
+        userData: state.userData.concat(action.payload),
+      };
+    }
+
     default:
       return state;
   }

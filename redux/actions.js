@@ -29,3 +29,23 @@ export const editQuestion = (updatedState) => ({
   type: actionTypes.EDIT_QUESTION,
   payload: updatedState,
 });
+
+export const addQuestion = (updatedState) => ({
+  type: actionTypes.ADD_QUESTION,
+  payload: updatedState,
+});
+
+export const editInfo = (updatedState) => ({
+  type: actionTypes.EDIT_INFO,
+  payload: updatedState,
+});
+
+export const deleteQuestion = (updatedState) => ({
+  type: actionTypes.DELETE_QUESTION,
+  payload: updatedState,
+});
+
+export const addSet = (newSet) => ({
+  type: actionTypes.ADD_SET,
+  payload: newSet,
+});

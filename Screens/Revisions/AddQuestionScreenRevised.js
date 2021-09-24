@@ -8,56 +8,23 @@ import {
   TouchableOpacity,
   Keyboard,
 } from "react-native";
-import { connect } from "react-redux";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { editQuestion } from "../redux/actions";
 
-const EditQuestionScreen = ({ userData, editQuestion }) => {
+import { useRoute, useNavigation } from "@react-navigation/native";
+
+const AddQuestionRevised = (handleNewQuestion) => {
   const route = useRoute();
-  const { question, setId } = route.params;
+  const { setId } = route.params;
   const navigation = useNavigation();
-  const [currentQuestion, setCurrentQuestion] = useState(question);
+  const [currentQuestion, setCurrentQuestion] = useState({
+    question: "",
+    answer: "",
+  });
 
   const handleInfoChange = (type, text) => {
     setCurrentQuestion({
       ...currentQuestion,
       [type]: text,
     });
-  };
-
-  const handleSubmit = () => {
-    //create updated copy of state
-    //filter out set to update
-    const setToUpdate = userData.filter((set) => set.id === setId)[0];
-    const updatedQuestions = setToUpdate.questions.map((question) => {
-      if (question.id === currentQuestion.id) {
-        return currentQuestion;
-      }
-
-      return question;
-    });
-
-    const updatedSet = {
-      ...setToUpdate,
-      questions: updatedQuestions,
-    };
-
-    //map over both sets, update new set
-
-    const updatedState = userData.map((set) => {
-      if (set.id === setId) {
-        return updatedSet;
-      }
-      return set;
-    });
-    editQuestion(updatedState);
-    // navigation.navigate("EditSet", {
-    //   itemId: updatedSet.id,
-    // });
-    navigation.goBack();
-
-    //dispatch new state to store
-    //navigate back to edit set screen
   };
 
   //handle global state updates in this screen
@@ -80,7 +47,7 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
             numberOfLines={4}
             returnKeyType="done"
             blurOnSubmit={true}
-            onChangeText={(text) => handleInfoChange("question", text)}
+            onChangeText={(text) => handleNewQuestion("question", text)}
             value={currentQuestion.question}
           />
         </View>
@@ -92,7 +59,7 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
             numberOfLines={4}
             returnKeyType="done"
             blurOnSubmit={true}
-            onChangeText={(text) => handleInfoChange("answer", text)}
+            onChangeText={(text) => handleNewQuestion("answer", text)}
             value={currentQuestion.answer}
           />
         </View>
@@ -102,7 +69,7 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
             handleSubmit();
           }}
         >
-          <Text style={styles.btnText}>Edit Question</Text>
+          <Text style={styles.btnText}>Add Question</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -152,12 +119,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  editQuestion: (updatedState) => dispatch(editQuestion(updatedState)),
-});
-
-const mapStateToProps = (state) => ({
-  userData: state.userData.userData,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditQuestionScreen);
+export default AddQuestionRevised;

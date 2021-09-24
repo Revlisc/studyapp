@@ -10,13 +10,16 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { editQuestion } from "../redux/actions";
+import { addQuestion } from "../redux/actions";
 
-const EditQuestionScreen = ({ userData, editQuestion }) => {
+const AddQuestion = ({ userData, addQuestion }) => {
   const route = useRoute();
-  const { question, setId } = route.params;
+  const { setId } = route.params;
   const navigation = useNavigation();
-  const [currentQuestion, setCurrentQuestion] = useState(question);
+  const [currentQuestion, setCurrentQuestion] = useState({
+    question: "",
+    answer: "",
+  });
 
   const handleInfoChange = (type, text) => {
     setCurrentQuestion({
@@ -29,13 +32,13 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
     //create updated copy of state
     //filter out set to update
     const setToUpdate = userData.filter((set) => set.id === setId)[0];
-    const updatedQuestions = setToUpdate.questions.map((question) => {
-      if (question.id === currentQuestion.id) {
-        return currentQuestion;
-      }
 
-      return question;
-    });
+    const newQuestion = {
+      ...currentQuestion,
+      id: Math.random() * 1000,
+    };
+
+    const updatedQuestions = setToUpdate.questions.concat(newQuestion);
 
     const updatedSet = {
       ...setToUpdate,
@@ -50,7 +53,7 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
       }
       return set;
     });
-    editQuestion(updatedState);
+    addQuestion(updatedState);
     // navigation.navigate("EditSet", {
     //   itemId: updatedSet.id,
     // });
@@ -102,7 +105,7 @@ const EditQuestionScreen = ({ userData, editQuestion }) => {
             handleSubmit();
           }}
         >
-          <Text style={styles.btnText}>Edit Question</Text>
+          <Text style={styles.btnText}>Add Question</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -153,11 +156,11 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  editQuestion: (updatedState) => dispatch(editQuestion(updatedState)),
+  addQuestion: (updatedState) => dispatch(addQuestion(updatedState)),
 });
 
 const mapStateToProps = (state) => ({
   userData: state.userData.userData,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditQuestionScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

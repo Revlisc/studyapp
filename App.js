@@ -9,6 +9,9 @@ import ProfileScreen from "./Screens/ProfileScreen.js";
 import SignUpScreen from "./Screens/SignUpScreen.js";
 import EditSetScreen from "./Screens/EditSetScreen.js";
 import EditQuestionScreen from "./Screens/EditQuestionScreen.js";
+import AddQuestion from "./Screens/AddQuestionScreen.js";
+import AddQuestionRevised from "./Screens/Revisions/AddQuestionScreenRevised.js";
+import AddSet from "./Screens/AddSetScreen.js";
 import store from "./redux/configureStore.js";
 import { Provider } from "react-redux";
 import ReviewScreen from "./Screens/ReviewScreen.js";
@@ -26,14 +29,20 @@ function Stacks() {
         headerTitleStyle: "bold",
       }}
     >
-      
-      <Stack.Screen options={{headerShown: false}} name="SignUp" component={SignUpScreen} />
-      <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
 
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="EditSet" component={EditSetScreen} />
       <Stack.Screen name="EditQuestion" component={EditQuestionScreen} />
-      <Stack.Screen name='ReviewScreen' component={ReviewScreen} options={{gestureEnabled: false}}/>
+      <Stack.Screen name="Add Question" component={AddQuestion} />
+      <Stack.Screen name="Add Question Revised" component={AddQuestionRevised} />
+      <Stack.Screen name="Add New Set" component={AddSet} />
+      <Stack.Screen
+        name="ReviewScreen"
+        component={ReviewScreen}
+        options={{ gestureEnabled: false }}
+      />
     </Stack.Navigator>
   );
 }
