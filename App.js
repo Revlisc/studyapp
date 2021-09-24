@@ -10,6 +10,8 @@ import SignUpScreen from "./Screens/SignUpScreen.js";
 import EditSetScreen from "./Screens/EditSetScreen.js";
 import EditQuestionScreen from "./Screens/EditQuestionScreen.js";
 import AddQuestion from "./Screens/AddQuestionScreen.js";
+import AddQuestionRevised from "./Screens/Revisions/AddQuestionScreenRevised.js";
+import AddSet from "./Screens/AddSetScreen.js";
 import store from "./redux/configureStore.js";
 import { Provider } from "react-redux";
 
@@ -33,6 +35,8 @@ function Stacks() {
       <Stack.Screen name="EditSet" component={EditSetScreen} />
       <Stack.Screen name="EditQuestion" component={EditQuestionScreen} />
       <Stack.Screen name="Add Question" component={AddQuestion} />
+      <Stack.Screen name="Add Question Revised" component={AddQuestionRevised} />
+      <Stack.Screen name="Add New Set" component={AddSet} />
     </Stack.Navigator>
   );
 }

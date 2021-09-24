@@ -44,3 +44,8 @@ export const deleteQuestion = (updatedState) => ({
   type: actionTypes.DELETE_QUESTION,
   payload: updatedState,
 });
+
+export const addSet = (newSet) => ({
+  type: actionTypes.ADD_SET,
+  payload: newSet,
+});

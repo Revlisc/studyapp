@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { TextInput, SafeAreaView, TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { editInfo } from "../redux/actions";
 
-const EditSetInfo = ({ currentSet, userData, editInfo, onDelete }) => {
+const EditSetInfo = ({ currentSet, userData, editInfo, onDelete, newSet }) => {
   const { setName, description } = currentSet;
   const [info, setInfo] = useState({ setName, description });
 
@@ -37,7 +37,7 @@ const EditSetInfo = ({ currentSet, userData, editInfo, onDelete }) => {
     <SafeAreaView>
       <TextInput
         style={styles.setName}
-        onChangeText={(text) => handleInfoChange("setName", text)}
+        onChangeText={(text) => handleInfoChange("description", text)}
         value={info.setName}
       />
       <TextInput
@@ -47,15 +47,18 @@ const EditSetInfo = ({ currentSet, userData, editInfo, onDelete }) => {
         onChangeText={(text) => handleInfoChange("description", text)}
         value={info.description}
       />
-
-      <View style={styles.btnContainer}>
-        <TouchableOpacity style={styles.deleteBtn} onPress={() => onDelete()}>
-          <Text style={styles.btnText}>Delete Set</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.editBtn} onPress={() => handleSubmit()}>
-          <Text style={styles.btnText}>Edit Set Info</Text>
-        </TouchableOpacity>
-      </View>
+      {!newSet ? (
+        <View style={styles.btnContainer}>
+          <TouchableOpacity style={styles.deleteBtn} onPress={() => onDelete()}>
+            <Text style={styles.btnText}>Delete Set</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.editBtn} onPress={() => handleSubmit()}>
+            <Text style={styles.btnText}>Edit Set Info</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View />
+      )}
     </SafeAreaView>
   );
 };
