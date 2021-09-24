@@ -29,20 +29,20 @@ function Stacks() {
         headerTitleStyle: "bold",
       }}
     >
-      
-      <Stack.Screen options={{headerShown: false}} name="SignUp" component={SignUpScreen} />
-      <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
 
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="EditSet" component={EditSetScreen} />
       <Stack.Screen name="EditQuestion" component={EditQuestionScreen} />
-<<<<<<< HEAD
       <Stack.Screen name="Add Question" component={AddQuestion} />
       <Stack.Screen name="Add Question Revised" component={AddQuestionRevised} />
       <Stack.Screen name="Add New Set" component={AddSet} />
-=======
-      <Stack.Screen name='ReviewScreen' component={ReviewScreen} options={{gestureEnabled: false}}/>
->>>>>>> main
+      <Stack.Screen
+        name="ReviewScreen"
+        component={ReviewScreen}
+        options={{ gestureEnabled: false }}
+      />
     </Stack.Navigator>
   );
 }
