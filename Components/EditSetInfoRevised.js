@@ -16,6 +16,9 @@ const EditSetInfoRevised = ({ handleInfoChange, currentSet }) => {
         style={styles.description}
         multiline
         numberOfLines={4}
+        returnKeyType="done"
+        blurOnSubmit={true}
+        numberOfLines={4}
         onChangeText={(text) => handleInfoChange("description", text)}
         value={currentSet.description}
       />

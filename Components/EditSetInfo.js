@@ -37,13 +37,15 @@ const EditSetInfo = ({ currentSet, userData, editInfo, onDelete, newSet }) => {
     <SafeAreaView>
       <TextInput
         style={styles.setName}
-        onChangeText={(text) => handleInfoChange("description", text)}
+        onChangeText={(text) => handleInfoChange("setName", text)}
         value={info.setName}
       />
       <TextInput
         style={styles.description}
         multiline
         numberOfLines={4}
+        returnKeyType="done"
+        blurOnSubmit={true}
         onChangeText={(text) => handleInfoChange("description", text)}
         value={info.description}
       />

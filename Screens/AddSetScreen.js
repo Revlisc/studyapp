@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   StyleSheet,
   FlatList,
-  Icon,
   TouchableOpacity,
   Modal,
   Pressable,
@@ -16,7 +15,9 @@ import { addSet } from "../redux/actions";
 import EditSetInfoRevised from "../Components/EditSetInfoRevised";
 import EditQuestionButton from "../Components/EditQuestionButton";
 
-const AddSet = ({ navigation, addSet }) => {
+//this is a model for the way the editSet screen should look too, all the state held locally, untill
+//the user submits, then update the redux store.
+const AddSet = ({ addSet, navigation }) => {
   const [currentSet, setCurrentSet] = useState({ questions: [], id: Math.random() * 1000 });
   const [newQuestion, setNewQuestion] = useState({ question: "", answer: "" });
   const [questionToEdit, setQuestionToEdit] = useState("");
@@ -84,13 +85,20 @@ const AddSet = ({ navigation, addSet }) => {
     setEditModalVisible(false);
   };
 
-  const onDeleteQuestionHandler = () => {
-    console.log("delete");
+  const onDeleteQuestionHandler = (questionToDelete) => {
+    console.log("delete", questionToDelete);
+    const newQuestions = currentSet.questions.filter(
+      (question) => question.id !== questionToDelete.id
+    );
+    setCurrentSet({
+      ...currentSet,
+      questions: newQuestions,
+    });
   };
 
   const handleSubmit = () => {
-    console.log(currentSet);
     addSet(currentSet);
+    navigation.goBack();
   };
 
   const renderItem = ({ item, index }) => (
@@ -162,9 +170,12 @@ const AddSet = ({ navigation, addSet }) => {
             <TouchableOpacity style={styles.submitBtn} onPress={() => handleNewQuestionSubmit()}>
               <Text style={styles.btnText}>Add Question</Text>
             </TouchableOpacity>
-            <Pressable style={styles.cancelBtn} onPress={() => setModalVisible(!modalVisible)}>
+            <TouchableOpacity
+              style={styles.cancelBtn}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
               <Text style={styles.btnText}>Cancel</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -219,12 +230,12 @@ const AddSet = ({ navigation, addSet }) => {
         </View>
       </Modal>
 
-      <Pressable style={[styles.addNewBtn]} onPress={() => setModalVisible(true)}>
+      <TouchableOpacity style={styles.addNewBtn} onPress={() => setModalVisible(true)}>
         <Text style={styles.textStyle}>Add Question</Text>
-      </Pressable>
+      </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleSubmit()}>
-        <Text>Add </Text>
+      <TouchableOpacity style={styles.addNewBtn} onPress={() => handleSubmit()}>
+        <Text style={styles.textStyle}>Add This Set </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -263,18 +274,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
-  cancelBtn: {
-    width: 300,
-    paddingVertical: 10,
-    alignItems: "center",
-    borderColor: "#C4C4C4",
-    borderWidth: 1,
-    backgroundColor: "#6C61EB",
-    borderRadius: 15,
-    alignSelf: "center",
-  },
-
-  addBtn: {},
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -344,7 +343,17 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     borderColor: "#C4C4C4",
-
+    borderWidth: 1,
+    backgroundColor: "#6C61EB",
+    width: 150,
+    alignItems: "center",
+    padding: 12,
+    borderRadius: 15,
+    alignSelf: "center",
+  },
+  cancelBtn: {
+    borderColor: "#C4C4C4",
+    marginTop: 15,
     borderWidth: 1,
     backgroundColor: "#6C61EB",
     width: 150,
