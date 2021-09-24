@@ -1,10 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
 import SetButton from "../Components/SetButton";
 
-const HomeScreen = ({ userData, navigation }) => {
-  const renderItem = ({ item }) => <SetButton setName={item.setName} id={item.id} />;
+const HomeScreen = ({ userData }) => {
+  const navigate = useNavigation();
+
+  const renderItem = ({ item }) => (
+    <SetButton
+      setName={item.setName}
+      id={item.id}
+      onPress={() => navigate.navigation("ReviewScreen", { itemId: item.id })}
+    />
+  );
 
   return (
     <SafeAreaView style={styles.container}>

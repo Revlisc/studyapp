@@ -5,7 +5,7 @@ import { Icon } from "react-native-elements";
 const SetButton = ({ setName, id }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.setButton}>
+    <TouchableOpacity onPress={() => navigation.navigate('ReviewScreen', {itemId: id})} style={styles.setButton}>
       <View style={styles.containerItems}>
         <Text style={styles.text}>{setName}</Text>
         <Icon
